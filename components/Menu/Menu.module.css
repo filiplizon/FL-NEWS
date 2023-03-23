@@ -1,0 +1,25 @@
+.menu {
+  border-bottom: 0;
+}
+
+.menu_item:hover {
+  transform: scale(1.1);
+}
+
+.menu_item {
+  transition: transform 0.2s ease !important;
+}
+
+.menu_item span {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .menu_item span {
+    display: block;
+  }
+
+  .menu_item_mobile span {
+    display: none;
+  }
+}
