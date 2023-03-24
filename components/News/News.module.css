@@ -1,0 +1,26 @@
+.wrapper {
+  width: 100%;
+  padding: 10px 20px;
+  height: 100%;
+  z-index: 1;
+}
+
+.carousel li {
+  background: var(--primary);
+}
+
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    width: 80%;
+  }
+
+  .news {
+    width: 100%;
+  }
+}

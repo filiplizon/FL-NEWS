@@ -8,6 +8,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary: #121221;
+  --white: #fff;
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -87,12 +89,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #fff;
   height: 100vh;
 }
 
@@ -109,9 +106,13 @@ a {
 
 .ant-menu-item-active,
 .ant-menu-item-selected {
-  color: #121221 !important;
+  color: var(--primary) !important;
 }
 
 .ant-menu-item::after {
   border-bottom-width: 0px !important;
+}
+
+.slick-dots li.slick-active button {
+  background: var(--primary) !important;
 }
