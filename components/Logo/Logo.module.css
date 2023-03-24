@@ -1,11 +1,11 @@
 .logo,
 .logo:hover {
   font-size: 20px;
-  color: #121221;
+  color: var(--primary);
 }
 
 .logo span {
-  background-color: #121221;
+  background-color: var(--primary);
   color: #fff;
   padding: 0 5px 5px;
   border-radius: 10px;

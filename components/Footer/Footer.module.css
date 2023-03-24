@@ -2,10 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
   bottom: 0;
   width: 100%;
   background-color: #121221;
+  height: 10vh;
+  z-index: 1000;
 }
 
 .footer_text {
