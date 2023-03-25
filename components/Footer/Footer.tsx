@@ -1,15 +1,18 @@
 import { Divider, Row, Typography } from "antd";
 import { Footer } from "antd/es/layout/layout";
 import styles from "./Footer.module.css";
+import CurrentTime from "../CurrentTime/CurrentTime";
 
-const { Text } = Typography;
+const { Paragraph } = Typography;
 
 const FooterContainer = () => {
   return (
     <Footer className={styles.footer}>
-      <Text className={styles.footer_text}>16:11</Text>
+      <Paragraph className={styles.footer_text}>
+        <CurrentTime />
+      </Paragraph>
       <Divider type="vertical" className={styles.footer_divider}></Divider>
-      <Text className={styles.footer_text}>Articles: 65</Text>
+      <Paragraph className={styles.footer_text}>Articles: 65</Paragraph>
     </Footer>
   );
 };
