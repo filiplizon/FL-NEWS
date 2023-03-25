@@ -6,12 +6,13 @@
   transform: scale(1.1);
 }
 
-.menu_item {
+.menu_item,
+.menu_item_mobile {
   transition: transform 0.2s ease !important;
 }
 
 @media (min-width: 768px) {
-  .menu_item_mobile span {
+  .menu .menu_item_mobile {
     display: none;
   }
 }

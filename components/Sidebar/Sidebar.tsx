@@ -1,5 +1,6 @@
+import { RootState } from "@/store/store";
 import { Divider, Row, Typography, Layout, List, Avatar } from "antd";
-
+import { useSelector } from "react-redux";
 import styles from "./Sidebar.module.css";
 
 const { Title } = Typography;
@@ -59,8 +60,15 @@ const data = [
 ];
 
 const Sidebar = () => {
+  const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+
   return (
-    <aside className={styles.wrapper}>
+    <aside
+      className={styles.wrapper}
+      style={{
+        transform: isSidebarOpen ? "translateX(0)" : "translateX(100%)",
+      }}
+    >
       <Title level={4}>Select country:</Title>
       <List
         className={styles.list}
