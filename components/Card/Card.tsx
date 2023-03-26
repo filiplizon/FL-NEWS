@@ -4,27 +4,27 @@ const { Meta } = Card;
 const { Title, Paragraph } = Typography;
 
 type IProps = {
-  isBig?: boolean;
+  isSlider?: boolean;
 };
 
-const CardContainer = ({ isBig }: IProps) => {
+const CardContainer = ({ isSlider }: IProps) => {
   return (
     <Card
-      hoverable={!isBig}
+      hoverable={!isSlider}
       cover={
-        isBig ? null : (
+        isSlider ? null : (
           <img
             alt="example"
             src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg"
           />
         )
       }
-      className={isBig ? styles.card_big : styles.card}
+      className={isSlider ? styles.card_big : styles.card}
     >
       <Meta
         title={<Title level={4}>Tytuł kafelka</Title>}
         description={
-          isBig && (
+          isSlider && (
             <Paragraph>
               {" "}
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
