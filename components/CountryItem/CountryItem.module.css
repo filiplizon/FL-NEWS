@@ -1,0 +1,28 @@
+.list_item {
+  width: 100%;
+  justify-content: center !important;
+}
+
+.list_item_meta {
+  flex: unset !important;
+  justify-content: center;
+  width: 50%;
+  word-break: break-all;
+}
+
+.list_item_avatar {
+  border-radius: 0;
+  height: 25px;
+  width: 35px;
+  border: 1px solid lightgray;
+}
+a.link:hover {
+  color: var(--primary) !important;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  .list_item_meta {
+    width: 85%;
+  }
+}

@@ -1,93 +1,48 @@
 import { RootState } from "@/store/store";
-import { Divider, Row, Typography, Layout, List, Avatar } from "antd";
-import { useSelector } from "react-redux";
+import { Typography, List } from "antd";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import styles from "./Sidebar.module.css";
+import CountryItem from "../CountryItem/CountryItem";
+import { Country, fetchCountries } from "@/features/countries/countriesSlice";
+import { useEffect, useMemo } from "react";
 
 const { Title } = Typography;
 
-const data = [
-  {
-    title: "Polanddsfasdafsdf 1",
-  },
-  {
-    title: "Polanddsf 2",
-  },
-  {
-    title: "Po 3",
-  },
-  {
-    title: "Polanddsfsd 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-  {
-    title: "Polanda 4",
-  },
-];
-
 const Sidebar = () => {
-  const isSidebarOpen = useSelector((state: RootState) => state.sidebar.isOpen);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCountries());
+  }, []);
+
+  const { isOpen, countries } = useAppSelector((state: RootState) => ({
+    isOpen: state.sidebar.isOpen,
+    countries: state.countries.countries,
+  }));
+
+  const sortedCountries = useMemo(() => {
+    const sortCountriesByName = (countries: Country[]) => {
+      return countries
+        .map(country => country[0])
+        .sort((a, b) => a.name.common.localeCompare(b.name.common));
+    };
+
+    return sortCountriesByName(countries);
+  }, [countries]);
 
   return (
     <aside
       className={styles.wrapper}
       style={{
-        transform: isSidebarOpen ? "translateX(0)" : "translateX(100%)",
+        transform: isOpen ? "translateX(0)" : "translateX(100%)",
       }}
     >
       <Title level={4}>Select country:</Title>
       <List
         className={styles.list}
         itemLayout="horizontal"
-        dataSource={data}
-        renderItem={(item, index) => (
-          <List.Item className={styles.list_item}>
-            <List.Item.Meta
-              className={styles.list_item_meta}
-              avatar={
-                <Avatar
-                  className={styles.list_item_avatar}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmrbNy1dieu6xoTQpfCRfzyp0PKKuTWWt9Vg7cmnVj4t-YR1g5j7fPpyVLXELzxdBJ_J8&usqp=CAU"
-                />
-              }
-              title={<a href="https://ant.design">{item.title}</a>}
-            />
-          </List.Item>
-        )}
+        dataSource={sortedCountries}
+        renderItem={country => <CountryItem country={country} />}
       />
     </aside>
   );

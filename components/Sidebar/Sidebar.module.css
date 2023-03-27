@@ -18,25 +18,6 @@
   margin-top: 5px;
 }
 
-.list_item {
-  width: 100%;
-  justify-content: center !important;
-}
-
-.list_item_meta {
-  flex: unset !important;
-  justify-content: center;
-  width: 50%;
-  word-break: break-all;
-}
-
-.list_item_avatar {
-  border-radius: 0;
-  height: 20px;
-  z-index: 0;
-  width: 100%;
-}
-
 @media (min-width: 768px) {
   .wrapper {
     display: block;
@@ -48,9 +29,5 @@
 
   .list {
     overflow-y: unset;
-  }
-
-  .list_item_meta {
-    width: 95%;
   }
 }
