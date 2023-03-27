@@ -8,8 +8,8 @@ import {
   ArrowLeftOutlined,
 } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { toggleVisibility } from "@/features/sidebarSlice/sidebarSlice";
-import { toggleNewsStructure } from "@/features/newsStructureSlice/newsStructureSlice";
+import { toggleVisibility } from "@/features/sidebar/sidebarSlice";
+import { toggleNewsStructure } from "@/features/newsStructure/newsStructureSlice";
 
 const MenuContainer = () => {
   const dispatch = useAppDispatch();

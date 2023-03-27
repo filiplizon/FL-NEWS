@@ -1,132 +1,42 @@
-import { useAppSelector } from "@/hooks/hooks";
+import { fetchNews } from "@/features/news/newsSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { RootState } from "@/store/store";
-import { Avatar, Carousel, Col, List, Typography } from "antd";
-
+import { Article } from "@/types/article";
+import { Col, List, Typography } from "antd";
+import { useEffect } from "react";
 import Card from "../Card/Card";
+import ListItem from "../ListItem/ListItem";
 import styles from "./News.module.css";
 const { Title } = Typography;
 
 const News = () => {
+  const dispatch = useAppDispatch();
   const isListView = useAppSelector(
     (state: RootState) => state.newsStructure.isListView
   );
+  const news = useAppSelector((state: RootState) => state.news.news);
+
+  useEffect(() => {
+    dispatch(fetchNews());
+  }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <Col className={styles.wrapper}>
       <Col>
-        <Title level={2}>Hot topics</Title>
-        <Carousel className={styles.carousel}>
-          <Card isSlider /> <Card isSlider /> <Card isSlider />
-        </Carousel>
         <Title level={3}>Latest news</Title>
-        {isListView ? (
-          <List>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-            <List.Item
-              className={styles.news_list_item}
-              key="1"
-              extra={<span>11.03.1998</span>}
-            >
-              <img
-                width={100}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-              <List.Item.Meta title="Tytuł kafelka" description="Źródło" />
-            </List.Item>
-          </List>
-        ) : (
-          <Col className={styles.news}>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-          </Col>
-        )}
+        <List
+          className={styles.news}
+          dataSource={news}
+          renderItem={(article: Article, index: number) =>
+            isListView ? (
+              <ListItem article={article} index={index} />
+            ) : (
+              <Card article={article} index={index} />
+            )
+          }
+        />
       </Col>
-    </div>
+    </Col>
   );
 };
 

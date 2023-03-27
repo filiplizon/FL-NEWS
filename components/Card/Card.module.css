@@ -1,6 +1,25 @@
+.card_wrapper {
+  width: 100%;
+}
+
 .card {
-  margin: 20px 0;
-  width: 49%;
+  width: 100%;
+}
+
+.card div + div {
+  padding-bottom: 0 !important;
+}
+
+.card img {
+  object-fit: cover;
+}
+
+.card_title {
+  height: 90px;
+}
+
+.card_details {
+  color: gray;
 }
 
 .card_big {
@@ -9,13 +28,12 @@
   background-color: var(--primary);
 }
 
-.card_big h4,
-.card_big div {
-  color: #fff;
-}
-
 @media (min-width: 768px) {
+  .card_wrapper {
+    width: 50%;
+  }
+
   .card {
-    width: 31%;
+    width: 97%;
   }
 }

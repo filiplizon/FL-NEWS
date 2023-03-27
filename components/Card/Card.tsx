@@ -1,42 +1,41 @@
-import { Card, Typography } from "antd";
+import { Card, Typography, Image, List } from "antd";
+import { Article } from "@/types/article";
 import styles from "./Card.module.css";
-const { Meta } = Card;
 const { Title, Paragraph } = Typography;
 
 type IProps = {
   isSlider?: boolean;
+  article: Article;
+  index: number;
 };
 
-const CardContainer = ({ isSlider }: IProps) => {
+const CardContainer = ({ isSlider, article, index }: IProps) => {
   return (
-    <Card
-      hoverable={!isSlider}
-      cover={
-        isSlider ? null : (
-          <img
-            alt="example"
-            src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/16:9/w_2123,h_1194,c_limit/phonepicutres-TA.jpg"
-          />
-        )
-      }
-      className={isSlider ? styles.card_big : styles.card}
-    >
-      <Meta
-        title={<Title level={4}>Tytuł kafelka</Title>}
-        description={
-          isSlider && (
-            <Paragraph>
-              {" "}
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
-              odio sunt eos pariatur ipsam, recusandae perspiciatis explicabo
-              nulla gfdagaegfodio sunt eos pariatur ipsam, recusandaedagaegfodio
-              sunt eos perspiciatis explicabexplicabodsg...read more sunt eos
-              perspiciatis explicabexplicabodsg...read more
-            </Paragraph>
+    <List.Item className={styles.card_wrapper} key={index}>
+      <Card
+        hoverable={!isSlider}
+        cover={
+          isSlider ? null : (
+            <Image
+              height={250}
+              alt="news-avatar"
+              src={article.urlToImage || "/news-placeholder.png"}
+            />
           )
         }
-      />
-    </Card>
+        className={isSlider ? styles.card_big : styles.card}
+      >
+        <Title className={styles.card_title} level={5}>
+          {article.title}
+        </Title>
+        <Paragraph className={styles.card_details}>
+          {article.author || "Unknown author"}
+        </Paragraph>
+        <Paragraph className={styles.card_details}>
+          {new Date(article.publishedAt).toLocaleDateString("pl-PL")}
+        </Paragraph>
+      </Card>
+    </List.Item>
   );
 };
 
