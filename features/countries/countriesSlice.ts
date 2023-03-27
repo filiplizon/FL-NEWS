@@ -64,12 +64,14 @@ export const fetchCountries = createAsyncThunk<Country[]>(
 
 interface CountriesState {
   countries: Country[];
+  currentCountryCode: string | null;
   loading: boolean;
   error: string;
 }
 
 const initialState: CountriesState = {
   countries: [],
+  currentCountryCode: "us",
   loading: false,
   error: "",
 };
@@ -77,7 +79,11 @@ const initialState: CountriesState = {
 export const countriesSlice = createSlice({
   name: "countries",
   initialState,
-  reducers: {},
+  reducers: {
+    selectCountry: (state, action: PayloadAction<string>) => {
+      state.currentCountryCode = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchCountries.pending, (state: Draft<CountriesState>) => {
       state.loading = true;
@@ -96,5 +102,7 @@ export const countriesSlice = createSlice({
     });
   },
 });
+
+export const { selectCountry } = countriesSlice.actions;
 
 export default countriesSlice.reducer;

@@ -11,14 +11,17 @@ const { Title } = Typography;
 
 const News = () => {
   const dispatch = useAppDispatch();
-  const isListView = useAppSelector(
-    (state: RootState) => state.newsStructure.isListView
+  const { isListView, news, currentCountryCode } = useAppSelector(
+    (state: RootState) => ({
+      isListView: state.newsStructure.isListView,
+      news: state.news.news,
+      currentCountryCode: state.countries.currentCountryCode,
+    })
   );
-  const news = useAppSelector((state: RootState) => state.news.news);
 
   useEffect(() => {
     dispatch(fetchNews());
-  }, []);
+  }, [currentCountryCode, dispatch]);
 
   return (
     <Col className={styles.wrapper}>
