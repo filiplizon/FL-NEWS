@@ -31,15 +31,14 @@ const REST_COUNTRIES_BASE_URL = "https://restcountries.com/v3.1/alpha";
 
 export const fetchCountries = createAsyncThunk<Country[]>(
   "countries/fetchCountries",
-  async () => {
+  async (): Promise<Country[]> => {
     try {
       const response: Response = await axios.get(
-        `https://newsapi.org/v2/top-headlines/sources?apiKey=${API_KEY}`
+        `https://newsapi.org/v2/sources?apiKey=${API_KEY}`
       );
       const countryCodes = response.data.sources.map(source => source.country);
-      const uniqueCountryCodes = countryCodes.filter(
-        (code, index) => countryCodes.indexOf(code) === index
-      );
+      const uniqueCountryCodes = Array.from(new Set(countryCodes));
+      uniqueCountryCodes.push("pl");
 
       const requests = uniqueCountryCodes.map(async code => {
         try {
@@ -64,14 +63,12 @@ export const fetchCountries = createAsyncThunk<Country[]>(
 
 interface CountriesState {
   countries: Country[];
-  currentCountryCode: string | null;
   loading: boolean;
   error: string;
 }
 
 const initialState: CountriesState = {
   countries: [],
-  currentCountryCode: "us",
   loading: false,
   error: "",
 };
@@ -79,11 +76,7 @@ const initialState: CountriesState = {
 export const countriesSlice = createSlice({
   name: "countries",
   initialState,
-  reducers: {
-    selectCountry: (state, action: PayloadAction<string>) => {
-      state.currentCountryCode = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchCountries.pending, (state: Draft<CountriesState>) => {
       state.loading = true;
@@ -102,7 +95,5 @@ export const countriesSlice = createSlice({
     });
   },
 });
-
-export const { selectCountry } = countriesSlice.actions;
 
 export default countriesSlice.reducer;

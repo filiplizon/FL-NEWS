@@ -1,18 +1,16 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Article } from "@/types/article";
-import { RootState } from "@/store/store";
 
 const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async (_, { getState }) => {
-    const state = getState() as RootState;
-    const { currentCountryCode } = state.countries;
-
+  async (countryCode: string | string[] | undefined) => {
     const response = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=${currentCountryCode}&apiKey=${API_KEY}`
+      `https://newsapi.org/v2/top-headlines?country=${
+        countryCode || "us"
+      }&apiKey=${API_KEY}`
     );
     return response.data;
   }

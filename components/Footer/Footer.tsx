@@ -1,5 +1,5 @@
 import { Divider, Typography } from "antd";
-import { Footer } from "antd/es/layout/layout";
+import { Footer } from "antd/lib/layout/layout";
 import styles from "./Footer.module.css";
 import CurrentTime from "../CurrentTime/CurrentTime";
 import { useAppSelector } from "@/hooks/hooks";
@@ -15,10 +15,14 @@ const FooterContainer = () => {
       <Paragraph className={styles.footer_text}>
         <CurrentTime />
       </Paragraph>
-      <Divider type="vertical" className={styles.footer_divider}></Divider>
-      <Paragraph className={styles.footer_text}>
-        Articles: {news.length}
-      </Paragraph>
+      {news.length && (
+        <>
+          <Divider type="vertical" className={styles.footer_divider}></Divider>
+          <Paragraph className={styles.footer_text}>
+            Articles: {news.length}
+          </Paragraph>
+        </>
+      )}
     </Footer>
   );
 };

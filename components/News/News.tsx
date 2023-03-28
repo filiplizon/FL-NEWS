@@ -8,20 +8,21 @@ import Card from "../Card/Card";
 import ListItem from "../ListItem/ListItem";
 import styles from "./News.module.css";
 const { Title } = Typography;
+import { useRouter } from "next/router";
 
 const News = () => {
   const dispatch = useAppDispatch();
-  const { isListView, news, currentCountryCode } = useAppSelector(
-    (state: RootState) => ({
-      isListView: state.newsStructure.isListView,
-      news: state.news.news,
-      currentCountryCode: state.countries.currentCountryCode,
-    })
-  );
+  const { isListView, news } = useAppSelector((state: RootState) => ({
+    isListView: state.newsStructure.isListView,
+    news: state.news.news,
+  }));
+
+  const router = useRouter();
+  const { country } = router.query;
 
   useEffect(() => {
-    dispatch(fetchNews());
-  }, [currentCountryCode, dispatch]);
+    dispatch(fetchNews(country));
+  }, [country, dispatch]);
 
   return (
     <Col className={styles.wrapper}>
