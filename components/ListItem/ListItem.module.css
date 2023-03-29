@@ -2,8 +2,13 @@
   display: flex !important;
   align-items: center;
   width: 100%;
+  cursor: pointer;
 }
 
 .list_item_meta {
   padding-right: 10px;
+}
+
+.list_item:hover .list_item_meta h4 {
+  text-decoration: underline;
 }

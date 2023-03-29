@@ -1,6 +1,7 @@
 import Header from "@/components/Header/Header";
 import MainContent from "@/components/Main/Main";
 import Footer from "@/components/Footer/Footer";
+import Modal from "../Modal/Modal";
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <Header />
       <MainContent />
       <Footer />
+      <Modal />
     </>
   );
 }

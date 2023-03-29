@@ -8,23 +8,29 @@ import {
   ArrowLeftOutlined,
 } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { toggleVisibility } from "@/features/sidebar/sidebarSlice";
+import { toggleSidebarVisibility } from "@/features/sidebar/sidebarSlice";
 import { toggleNewsStructure } from "@/features/newsStructure/newsStructureSlice";
+import { toggleModalVisibility } from "@/features/modal/modalSlice";
+import { setCurrentArticle } from "@/features/news/newsSlice";
 
 const MenuContainer = () => {
   const dispatch = useAppDispatch();
-  const isSidebarOpen = useAppSelector(
-    (state: RootState) => state.sidebar.isOpen
-  );
-  const isListView = useAppSelector(
-    (state: RootState) => state.newsStructure.isListView
-  );
 
-  const handleToggleVisibility = () => {
-    dispatch(toggleVisibility());
+  const { isSidebarOpen, isListView } = useAppSelector((state: RootState) => ({
+    isSidebarOpen: state.sidebar.isOpen,
+    isListView: state.newsStructure.isListView,
+  }));
+
+  const handleToggleSidebarVisibility = () => {
+    dispatch(toggleSidebarVisibility());
   };
 
-  const handletoggleNewsStructure = () => {
+  const handleToggleModalVisibility = () => {
+    dispatch(setCurrentArticle(null));
+    dispatch(toggleModalVisibility());
+  };
+
+  const handleToggleNewsStructure = () => {
     dispatch(toggleNewsStructure());
   };
 
@@ -32,7 +38,7 @@ const MenuContainer = () => {
     <Menu mode="horizontal" className={styles.menu}>
       {isListView ? (
         <Menu.Item
-          onClick={handletoggleNewsStructure}
+          onClick={handleToggleNewsStructure}
           key="1"
           className={styles.menu_item}
         >
@@ -40,18 +46,22 @@ const MenuContainer = () => {
         </Menu.Item>
       ) : (
         <Menu.Item
-          onClick={handletoggleNewsStructure}
+          onClick={handleToggleNewsStructure}
           key="2"
           className={styles.menu_item}
         >
           <UnorderedListOutlined style={{ fontSize: "18px" }} />
         </Menu.Item>
       )}
-      <Menu.Item key="2" className={styles.menu_item}>
+      <Menu.Item
+        onClick={handleToggleModalVisibility}
+        key="3"
+        className={styles.menu_item}
+      >
         <InfoCircleOutlined style={{ fontSize: "18px" }} />
       </Menu.Item>
       <Menu.Item
-        onClick={handleToggleVisibility}
+        onClick={handleToggleSidebarVisibility}
         key="4"
         className={styles.menu_item_mobile}
         style={{

@@ -1,6 +1,10 @@
-import { Card, Typography, Image, List } from "antd";
+import { Card, Typography, List, Image } from "antd";
 import { Article } from "@/types/article";
 import styles from "./Card.module.css";
+import { useAppDispatch } from "@/hooks/hooks";
+import { setCurrentArticle } from "@/features/news/newsSlice";
+import { toggleModalVisibility } from "@/features/modal/modalSlice";
+import { useCallback } from "react";
 const { Title, Paragraph } = Typography;
 
 type IProps = {
@@ -10,15 +14,28 @@ type IProps = {
 };
 
 const CardContainer = ({ isSlider, article, index }: IProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleClick = useCallback(() => {
+    dispatch(setCurrentArticle(article));
+    dispatch(toggleModalVisibility());
+  }, [dispatch, article]);
+
   return (
-    <List.Item className={styles.card_wrapper} key={index}>
+    <List.Item
+      onClick={handleClick}
+      className={styles.card_wrapper}
+      key={index}
+    >
       <Card
         hoverable={!isSlider}
         cover={
           isSlider ? null : (
             <Image
+              className={styles.card_image}
               height={250}
               alt="news-avatar"
+              preview={false}
               src={article.urlToImage || "/news-placeholder.png"}
             />
           )

@@ -25,6 +25,7 @@ export const fetchNews = createAsyncThunk(
 type News = {
   news: Article[];
   numberOfArticles: number;
+  currentArticle: Article | null;
   loading: boolean;
   error: string;
 };
@@ -32,6 +33,7 @@ type News = {
 const initialState: News = {
   news: [],
   numberOfArticles: 20,
+  currentArticle: null,
   loading: false,
   error: "",
 };
@@ -42,6 +44,9 @@ export const newsSlice = createSlice({
   reducers: {
     setNumberOfArticles: (state, action: PayloadAction<number>) => {
       state.numberOfArticles = action.payload;
+    },
+    setCurrentArticle: (state, action: PayloadAction<Article | null>) => {
+      state.currentArticle = action.payload;
     },
   },
   extraReducers: builder => {
@@ -60,6 +65,6 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { setNumberOfArticles } = newsSlice.actions;
+export const { setNumberOfArticles, setCurrentArticle } = newsSlice.actions;
 
 export default newsSlice.reducer;

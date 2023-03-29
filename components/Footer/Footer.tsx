@@ -1,5 +1,4 @@
 import { Divider, Select, Typography } from "antd";
-import { Option } from "antd/lib/mentions";
 import { Footer } from "antd/lib/layout/layout";
 import styles from "./Footer.module.css";
 import CurrentTime from "../CurrentTime/CurrentTime";
@@ -8,13 +7,19 @@ import { RootState } from "@/store/store";
 import { setNumberOfArticles } from "@/features/news/newsSlice";
 
 const { Paragraph } = Typography;
+const { Option } = Select;
 
 const FooterContainer = () => {
   const dispatch = useAppDispatch();
-  const news = useAppSelector((state: RootState) => state.news.news);
-  const numberOfArticles = useAppSelector(
-    (state: RootState) => state.news.numberOfArticles
-  );
+
+  const { news, numberOfArticles } = useAppSelector((state: RootState) => ({
+    news: state.news.news,
+    numberOfArticles: state.news.numberOfArticles,
+  }));
+
+  const handleSelectChange = (value: number) => {
+    dispatch(setNumberOfArticles(value));
+  };
 
   return (
     <Footer className={styles.footer}>
@@ -27,14 +32,12 @@ const FooterContainer = () => {
           <Paragraph className={styles.footer_text}>Articles:</Paragraph>
           <Select
             size="small"
-            defaultValue={numberOfArticles.toString()}
-            onChange={(value: string) =>
-              dispatch(setNumberOfArticles(parseInt(value)))
-            }
+            defaultValue={numberOfArticles}
+            onChange={handleSelectChange}
           >
-            <Option value="10">10</Option>
-            <Option value="20">20</Option>
-            <Option value="50">50</Option>
+            <Option value={10}>10</Option>
+            <Option value={20}>20</Option>
+            <Option value={50}>50</Option>
           </Select>
         </>
       )}

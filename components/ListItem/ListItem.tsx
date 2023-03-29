@@ -1,15 +1,29 @@
+import { useAppDispatch } from "@/hooks/hooks";
 import { Article } from "@/types/article";
 import { List } from "antd";
+import { setCurrentArticle } from "@/features/news/newsSlice";
+import { toggleModalVisibility } from "@/features/modal/modalSlice";
 import styles from "./ListItem.module.css";
 
-type IProps = {
+type Props = {
   article: Article;
   index: number;
 };
 
-const ListItem = ({ article, index }: IProps) => {
+const ListItem = ({ article, index }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const handleOnClick = () => {
+    dispatch(setCurrentArticle(article));
+    dispatch(toggleModalVisibility());
+  };
+
   return (
-    <List.Item className={styles.list_item} key={index}>
+    <List.Item
+      onClick={handleOnClick}
+      className={styles.list_item}
+      key={article.id || index}
+    >
       <List.Item.Meta
         className={styles.list_item_meta}
         title={article.title}
