@@ -12,17 +12,20 @@ import { useRouter } from "next/router";
 
 const News = () => {
   const dispatch = useAppDispatch();
-  const { isListView, news } = useAppSelector((state: RootState) => ({
-    isListView: state.newsStructure.isListView,
-    news: state.news.news,
-  }));
+  const { isListView, news, numberOfArticles } = useAppSelector(
+    (state: RootState) => ({
+      isListView: state.newsStructure.isListView,
+      news: state.news.news,
+      numberOfArticles: state.news.numberOfArticles,
+    })
+  );
 
   const router = useRouter();
   const { country } = router.query;
 
   useEffect(() => {
-    dispatch(fetchNews(country));
-  }, [country, dispatch]);
+    dispatch(fetchNews({ countryCode: country, numberOfArticles }));
+  }, [country, numberOfArticles, dispatch]);
 
   return (
     <Col className={styles.wrapper}>

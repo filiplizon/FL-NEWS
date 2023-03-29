@@ -6,13 +6,16 @@
   background-color: #121221;
   height: 10vh;
   z-index: 1000;
+  color: #fff;
 }
 
 .footer_text {
   color: #fff;
+  margin-right: 5px;
 }
 
 .footer_divider {
   background-color: #fff;
   height: 1.6em;
+  margin-right: 15px;
 }

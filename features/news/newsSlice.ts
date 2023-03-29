@@ -1,16 +1,22 @@
 import axios from "axios";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Article } from "@/types/article";
 
 const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async (countryCode: string | string[] | undefined) => {
+  async ({
+    countryCode,
+    numberOfArticles,
+  }: {
+    countryCode: string | string[] | undefined;
+    numberOfArticles: number;
+  }) => {
     const response = await axios.get(
       `https://newsapi.org/v2/top-headlines?country=${
         countryCode || "us"
-      }&apiKey=${API_KEY}`
+      }&pageSize=${numberOfArticles}&apiKey=${API_KEY}`
     );
     return response.data;
   }
@@ -18,12 +24,14 @@ export const fetchNews = createAsyncThunk(
 
 type News = {
   news: Article[];
+  numberOfArticles: number;
   loading: boolean;
   error: string;
 };
 
 const initialState: News = {
   news: [],
+  numberOfArticles: 20,
   loading: false,
   error: "",
 };
@@ -31,7 +39,11 @@ const initialState: News = {
 export const newsSlice = createSlice({
   name: "news",
   initialState,
-  reducers: {},
+  reducers: {
+    setNumberOfArticles: (state, action: PayloadAction<number>) => {
+      state.numberOfArticles = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(fetchNews.pending, state => {
       state.loading = true;
@@ -47,5 +59,7 @@ export const newsSlice = createSlice({
     });
   },
 });
+
+export const { setNumberOfArticles } = newsSlice.actions;
 
 export default newsSlice.reducer;
