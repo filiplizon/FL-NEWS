@@ -23,6 +23,11 @@ a.link:hover {
 
 @media (min-width: 768px) {
   .list_item_meta {
+    width: 25%;
+  }
+}
+@media (min-width: 1100px) {
+  .list_item_meta {
     width: 85%;
   }
 }

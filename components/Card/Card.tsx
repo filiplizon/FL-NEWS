@@ -33,7 +33,7 @@ const CardContainer = ({ isSlider, article, index }: IProps) => {
           isSlider ? null : (
             <Image
               className={styles.card_image}
-              height={250}
+              height={225}
               alt="news-avatar"
               preview={false}
               src={article.urlToImage || "/news-placeholder.png"}
@@ -45,6 +45,12 @@ const CardContainer = ({ isSlider, article, index }: IProps) => {
         <Title className={styles.card_title} level={5}>
           {article.title}
         </Title>
+        {article.description && (
+          <Paragraph className={styles.card_details_description}>
+            {`${article.description?.slice(0, 110)}... read more`}
+          </Paragraph>
+        )}
+
         <Paragraph className={styles.card_details}>
           {article.author || "Unknown author"}
         </Paragraph>
