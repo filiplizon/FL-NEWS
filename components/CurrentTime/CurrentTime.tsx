@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 
 const CurrentTime = () => {
   const [time, setTime] = useState(new Date());
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useEffect(() => {
     const intervalID = setInterval(() => {
@@ -17,7 +22,7 @@ const CurrentTime = () => {
   const minutes = time.getMinutes().toString().padStart(2, "0");
   const seconds = time.getSeconds().toString().padStart(2, "0");
 
-  return <span>{`${hours}:${minutes}:${seconds}`}</span>;
+  return <>{hydrated && <span>{`${hours}:${minutes}:${seconds}`}</span>}</>;
 };
 
 export default CurrentTime;
