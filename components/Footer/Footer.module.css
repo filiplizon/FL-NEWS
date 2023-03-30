@@ -3,7 +3,7 @@
   justify-content: center;
   bottom: 0;
   width: 100%;
-  background-color: #121221;
+  background-color: var(--primary);
   height: 10vh;
   z-index: 1000;
   color: #fff;

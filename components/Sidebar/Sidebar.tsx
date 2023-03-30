@@ -3,8 +3,8 @@ import { Typography, List } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import styles from "./Sidebar.module.css";
 import CountryItem from "../CountryItem/CountryItem";
-import { Country, fetchCountries } from "@/features/countries/countriesSlice";
-import { useEffect, useMemo } from "react";
+import { fetchCountries } from "@/features/countries/countriesSlice";
+import { useEffect } from "react";
 
 const { Title } = Typography;
 
@@ -13,22 +13,12 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(fetchCountries());
-  }, []);
+  }, [dispatch]);
 
   const { isOpen, countries } = useAppSelector((state: RootState) => ({
     isOpen: state.sidebar.isOpen,
     countries: state.countries.countries,
   }));
-
-  const sortedCountries = useMemo(() => {
-    const sortCountriesByName = (countries: Country[]) => {
-      return countries
-        .map(country => country[0])
-        .sort((a, b) => a.name.common.localeCompare(b.name.common));
-    };
-
-    return sortCountriesByName(countries);
-  }, [countries]);
 
   return (
     <aside
@@ -41,7 +31,7 @@ const Sidebar = () => {
       <List
         className={styles.list}
         itemLayout="horizontal"
-        dataSource={sortedCountries}
+        dataSource={countries}
         renderItem={country => <CountryItem country={country} />}
       />
     </aside>

@@ -7,14 +7,12 @@ import {
 } from "@reduxjs/toolkit";
 
 export interface Country {
-  country: {
-    cca2: string;
-    name: {
-      common: string;
-    };
-    flags: {
-      png: string;
-    };
+  cca2: string;
+  name: {
+    common: string;
+  };
+  flags: {
+    png: string;
   };
 }
 
@@ -36,7 +34,10 @@ export const fetchCountries = createAsyncThunk<Country[]>(
       const response: Response = await axios.get(
         `https://newsapi.org/v2/sources?apiKey=${API_KEY}`
       );
-      const countryCodes = response.data.sources.map(source => source.country);
+
+      const countryCodes: string[] = response.data.sources.map(
+        source => source.country
+      );
       const uniqueCountryCodes = Array.from(new Set(countryCodes));
       uniqueCountryCodes.push("pl");
 
@@ -45,14 +46,17 @@ export const fetchCountries = createAsyncThunk<Country[]>(
           const response = await axios.get(
             `${REST_COUNTRIES_BASE_URL}/${code}`
           );
+
           return response.data;
         } catch {
           return null;
         }
       });
 
-      const responses = await Promise.all(requests);
-      const countries = responses.filter(response => response !== null);
+      const countries = (await Promise.all(requests))
+        .filter(response => response !== null)
+        .map(country => country[0])
+        .sort((a, b) => a.name.common.localeCompare(b.name.common));
 
       return countries;
     } catch (error) {

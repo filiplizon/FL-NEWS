@@ -1,22 +1,30 @@
 import axios from "axios";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Article } from "@/types/article";
+import { Country } from "../countries/countriesSlice";
+import { RootState } from "@/store/store";
 
 const API_KEY = process.env.NEXT_PUBLIC_NEWS_API_KEY;
 
+interface FetchNewsParams {
+  countryName: string | string[] | undefined;
+}
+
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
-  async ({
-    countryCode,
-    numberOfArticles,
-  }: {
-    countryCode: string | string[] | undefined;
-    numberOfArticles: number;
-  }) => {
+  async ({ countryName }: FetchNewsParams, { getState }) => {
+    const state = getState() as RootState;
+    const countries = state.countries.countries;
+    const countryCodeFromName =
+      countries.find((c: Country) =>
+        typeof countryName === "string"
+          ? c.name.common === countryName.replace(/-/g, " ")
+          : false
+      )?.cca2 || "us";
     const response = await axios.get(
       `https://newsapi.org/v2/top-headlines?country=${
-        countryCode || "us"
-      }&pageSize=${numberOfArticles}&apiKey=${API_KEY}`
+        countryCodeFromName || "us"
+      }&pageSize=100&apiKey=${API_KEY}`
     );
     return response.data;
   }
@@ -24,7 +32,6 @@ export const fetchNews = createAsyncThunk(
 
 type News = {
   news: Article[];
-  numberOfArticles: number;
   currentArticle: Article | null;
   loading: boolean;
   error: string;
@@ -32,7 +39,6 @@ type News = {
 
 const initialState: News = {
   news: [],
-  numberOfArticles: 20,
   currentArticle: null,
   loading: false,
   error: "",
@@ -42,9 +48,6 @@ export const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {
-    setNumberOfArticles: (state, action: PayloadAction<number>) => {
-      state.numberOfArticles = action.payload;
-    },
     setCurrentArticle: (state, action: PayloadAction<Article | null>) => {
       state.currentArticle = action.payload;
     },
@@ -65,6 +68,6 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { setNumberOfArticles, setCurrentArticle } = newsSlice.actions;
+export const { setCurrentArticle } = newsSlice.actions;
 
 export default newsSlice.reducer;
