@@ -35,6 +35,7 @@ type News = {
   currentArticle: Article | null;
   loading: boolean;
   error: string;
+  isListView: boolean;
 };
 
 const initialState: News = {
@@ -42,6 +43,7 @@ const initialState: News = {
   currentArticle: null,
   loading: false,
   error: "",
+  isListView: false,
 };
 
 export const newsSlice = createSlice({
@@ -50,6 +52,9 @@ export const newsSlice = createSlice({
   reducers: {
     setCurrentArticle: (state, action: PayloadAction<Article | null>) => {
       state.currentArticle = action.payload;
+    },
+    toggleNewsStructure: state => {
+      state.isListView = !state.isListView;
     },
   },
   extraReducers: builder => {
@@ -68,6 +73,6 @@ export const newsSlice = createSlice({
   },
 });
 
-export const { setCurrentArticle } = newsSlice.actions;
+export const { setCurrentArticle, toggleNewsStructure } = newsSlice.actions;
 
 export default newsSlice.reducer;

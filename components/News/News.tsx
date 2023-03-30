@@ -9,7 +9,7 @@ const { Title } = Typography;
 
 const News = () => {
   const { isListView, news } = useAppSelector((state: RootState) => ({
-    isListView: state.newsStructure.isListView,
+    isListView: state.news.isListView,
     news: state.news.news,
   }));
 

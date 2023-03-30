@@ -9,16 +9,18 @@ import {
 } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { toggleSidebarVisibility } from "@/features/sidebar/sidebarSlice";
-import { toggleNewsStructure } from "@/features/newsStructure/newsStructureSlice";
 import { toggleModalVisibility } from "@/features/modal/modalSlice";
-import { setCurrentArticle } from "@/features/news/newsSlice";
+import {
+  setCurrentArticle,
+  toggleNewsStructure,
+} from "@/features/news/newsSlice";
 
 const MenuContainer = () => {
   const dispatch = useAppDispatch();
 
   const { isSidebarOpen, isListView } = useAppSelector((state: RootState) => ({
     isSidebarOpen: state.sidebar.isOpen,
-    isListView: state.newsStructure.isListView,
+    isListView: state.news.isListView,
   }));
 
   const handleToggleSidebarVisibility = () => {
