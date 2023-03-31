@@ -17,8 +17,8 @@ const MainContent = () => {
   }, [country, dispatch]);
 
   return (
-    <main className={styles.wrapper}>
-      <Row className={styles.main}>
+    <main className={styles.main}>
+      <Row className={styles.wrapper}>
         <News />
         <Sidebar />
       </Row>

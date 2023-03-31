@@ -1,7 +1,7 @@
+import { Country } from "@/types/country";
 import { List, Avatar } from "antd";
 import Link from "next/link";
 import styles from "./CountryItem.module.css";
-import { Country } from "@/features/countries/countriesSlice";
 
 const CountryItem = ({ country }: { country: Country }) => {
   return (

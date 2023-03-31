@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 const CurrentTime = () => {
-  const [time, setTime] = useState(new Date());
   const [hydrated, setHydrated] = useState(false);
+  const [time, setTime] = useState(new Date());
 
   useEffect(() => {
     setHydrated(true);

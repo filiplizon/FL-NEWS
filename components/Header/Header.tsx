@@ -7,12 +7,12 @@ const { Header } = Layout;
 
 const HeaderContainer = () => {
   return (
-    <Row className={styles.wrapper}>
-      <Header className={styles.header}>
+    <Header className={styles.header}>
+      <Row className={styles.wrapper}>
         <Logo />
         <Menu />
-      </Header>
-    </Row>
+      </Row>
+    </Header>
   );
 };
 

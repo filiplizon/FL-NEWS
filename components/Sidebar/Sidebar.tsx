@@ -11,14 +11,14 @@ const { Title } = Typography;
 const Sidebar = () => {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCountries());
-  }, [dispatch]);
-
   const { isOpen, countries } = useAppSelector((state: RootState) => ({
     isOpen: state.sidebar.isOpen,
     countries: state.countries.countries,
   }));
+
+  useEffect(() => {
+    dispatch(fetchCountries());
+  }, [dispatch]);
 
   return (
     <aside

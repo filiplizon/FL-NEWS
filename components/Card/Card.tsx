@@ -7,13 +7,12 @@ import { toggleModalVisibility } from "@/features/modal/modalSlice";
 import { useCallback } from "react";
 const { Title, Paragraph } = Typography;
 
-type IProps = {
-  isSlider?: boolean;
+type Props = {
   article: Article;
   index: number;
 };
 
-const CardContainer = ({ isSlider, article, index }: IProps) => {
+const CardContainer = ({ article, index }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleClick = useCallback(() => {
@@ -28,19 +27,17 @@ const CardContainer = ({ isSlider, article, index }: IProps) => {
       key={index}
     >
       <Card
-        hoverable={!isSlider}
+        hoverable
         cover={
-          isSlider ? null : (
-            <Image
-              className={styles.card_image}
-              height={225}
-              alt="news-avatar"
-              preview={false}
-              src={article.urlToImage || "/news-placeholder.png"}
-            />
-          )
+          <Image
+            className={styles.card_image}
+            height={225}
+            alt="news-avatar"
+            preview={false}
+            src={article.urlToImage || "/news-placeholder.png"}
+          ></Image>
         }
-        className={isSlider ? styles.card_big : styles.card}
+        className={styles.card}
       >
         <Title className={styles.card_title} level={5}>
           {article.title}
