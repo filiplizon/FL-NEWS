@@ -5,16 +5,7 @@ import {
   Draft,
   PayloadAction,
 } from "@reduxjs/toolkit";
-
-export interface Country {
-  cca2: string;
-  name: {
-    common: string;
-  };
-  flags: {
-    png: string;
-  };
-}
+import { Country } from "@/types/country";
 
 interface Response {
   data: {
