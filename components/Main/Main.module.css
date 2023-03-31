@@ -1,13 +1,14 @@
-.wrapper {
+.main {
   width: 100%;
   height: 80vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   overflow-y: scroll;
   background-color: #fff;
 }
 
-.main {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,13 +1,14 @@
-.wrapper {
+.header {
   width: 100%;
   background-color: #fff;
   display: flex;
   justify-content: center;
   height: 10vh;
   border-bottom: 1px solid lightgray;
+  padding-inline: 0;
 }
 
-.header {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;

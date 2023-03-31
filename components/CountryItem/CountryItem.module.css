@@ -16,6 +16,7 @@
   width: 45px;
   border: 1px solid lightgray;
 }
+
 a.link:hover {
   color: var(--primary) !important;
   text-decoration: underline;
@@ -26,6 +27,7 @@ a.link:hover {
     width: 25%;
   }
 }
+
 @media (min-width: 1100px) {
   .list_item_meta {
     width: 85%;

@@ -1,5 +1,6 @@
 .card_wrapper {
   width: 100%;
+  max-width: 450px;
 }
 
 .card {
@@ -27,12 +28,6 @@
 .card_details {
   color: gray;
   margin: 10px 0;
-}
-
-.card_big {
-  width: 100%;
-  margin-bottom: 40px;
-  background-color: var(--primary);
 }
 
 @media (min-width: 768px) {
