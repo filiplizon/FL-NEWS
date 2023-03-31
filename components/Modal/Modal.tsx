@@ -5,6 +5,7 @@ import { Typography, Modal, Image } from "antd";
 import Link from "next/link";
 import { useCallback } from "react";
 import styles from "./Modal.module.css";
+import ModalInfo from "./ModalInfo";
 
 const { Paragraph, Title } = Typography;
 
@@ -32,7 +33,7 @@ const ModalContainer = () => {
     })
   );
 
-  const handleToggleModalVisibility = useCallback(() => {
+  const handleClose = useCallback(() => {
     dispatch(toggleModalVisibility());
   }, [dispatch]);
 
@@ -41,11 +42,11 @@ const ModalContainer = () => {
       keyboard={true}
       title={
         <Title className={styles.modal_title} level={5}>
-          {currentArticle?.title || "Trudności i przyjemności"}
+          {currentArticle?.title || null}
         </Title>
       }
       open={isOpen}
-      onCancel={handleToggleModalVisibility}
+      onCancel={handleClose}
       footer={null}
       className={currentArticle ? styles.modal : styles.modal_info}
     >
@@ -82,15 +83,7 @@ const ModalContainer = () => {
           </Link>
         </>
       ) : (
-        <Paragraph>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia,
-          similique voluptas! Facilis dolore voluptas temporibus voluptate
-          incidunt amet reprehenderit aspernatur, tempore, praesentium
-          laboriosam non voluptatum ipsa exercitationem beatae. Voluptatem
-          exercitationem deserunt assumenda repudiandae aut, sequi cumque
-          distinctio voluptatibus officiis quisquam, est commodi nulla repellat
-          magnam. Omnis ea corporis odit! Vel.
-        </Paragraph>
+        <ModalInfo />
       )}
     </Modal>
   );
