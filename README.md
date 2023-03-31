@@ -1,3 +1,10 @@
+
+1. Clone this repo by running `git clone https://github.com/filiplizon/gnNews`
+2. `cd gnNews`
+3. `npm install`
+4. Create file .env and type NEXT_PUBLIC_NEWS_API_KEY=[your api key] (https://newsapi.org/)
+5. `npm run dev`
+
 # gnNews - gnStudio React.js developer challenge
 
 Witaj, jeżeli znalazłeś się w tym miejscu to najprawdopodobniej chcesz dołączyć do niesamowitego teamu tworzącego rozwiązania szyte na miarę i chcesz w końcu realizować projekty, które nie będą nudne, będą sprawiały Ci frajdę i będą napawały Cię dumą kiedy tylko o nich pomyślisz.
