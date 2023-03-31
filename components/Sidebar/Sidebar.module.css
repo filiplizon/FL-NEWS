@@ -1,0 +1,33 @@
+.wrapper {
+  width: 100%;
+  height: 80vh;
+  padding: 10px;
+  background-color: var(--white);
+  color: var(--primary);
+  position: fixed;
+  z-index: 999;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 95%;
+  margin-top: 5px;
+}
+
+@media (min-width: 1100px) {
+  .wrapper {
+    display: block;
+    width: 20%;
+    position: relative;
+    overflow-y: unset;
+    transform: translateX(0) !important;
+  }
+
+  .list {
+    overflow-y: unset;
+  }
+}

@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  padding: 10px 20px;
+  height: 100%;
+  display: flex;
+}
+
+.news ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 1100px) {
+  .wrapper {
+    width: 80%;
+  }
+}

@@ -1,0 +1,13 @@
+.logo,
+.logo:hover {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.logo span {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0 5px 5px;
+  border-radius: 10px;
+  margin-right: 1px;
+}

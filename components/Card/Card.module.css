@@ -1,0 +1,41 @@
+.card_wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.card {
+  width: 100%;
+}
+
+.card div + div {
+  padding-bottom: 0 !important;
+}
+
+.card_image {
+  object-fit: cover;
+}
+
+.card_title {
+  height: 90px;
+  margin-bottom: 15px;
+}
+
+.card_details_description {
+  height: 70px;
+  margin: 10px 0;
+}
+
+.card_details {
+  color: gray;
+  margin: 10px 0;
+}
+
+@media (min-width: 768px) {
+  .card_wrapper {
+    width: 50%;
+  }
+
+  .card {
+    width: 97%;
+  }
+}
