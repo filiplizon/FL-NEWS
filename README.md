@@ -1,40 +1,49 @@
+# FL News
 
-1. Clone this repo by running `git clone https://github.com/filiplizon/gnNews`
-2. `cd gnNews`
-3. `npm install`
-4. Create file .env and type NEXT_PUBLIC_NEWS_API_KEY=[your api key] (https://newsapi.org/)
-5. `npm run dev`
+This application allows users to browse news from various countries around the world. Built with Next.js, TypeScript, Redux Toolkit, Ant Design, and REST API
 
-# gnNews - gnStudio React.js developer challenge
+## Demo
 
-Witaj, jeżeli znalazłeś się w tym miejscu to najprawdopodobniej chcesz dołączyć do niesamowitego teamu tworzącego rozwiązania szyte na miarę i chcesz w końcu realizować projekty, które nie będą nudne, będą sprawiały Ci frajdę i będą napawały Cię dumą kiedy tylko o nich pomyślisz.
+Unfortunately, the external API used in this application only allows local usage. If you want to see how this application works, I encourage you to install it locally following the instructions provided on GitHub.
 
-Cóż, projekty są różne, więc może tak właśnie być, a może być zupełnie odwrotnie 😉 Możemy Ci jedynie zagwarantować, że nie będziesz się nudzić.
+## Instructions
 
-## O zadaniu
+To download and run this application on your computer, follow the steps below:
 
-Abyśmy mogli bliżej poznać Twoje umiejętności techniczne, stopień zaangażowania oraz sposób myślenia, przygotowaliśmy dla Ciebie zadanie polegające na stworzeniu prostej aplikacji będącej "agregatorem newsów" szumnie nazwanej przez nas roboczo **gnNews**.
+1. Clone the repository:
 
-To na czym nam zależy to przede wszystkim czytelny kod, działająca aplikacja i UI, który nie wygląda jak konar ciosany tępym scyzorykiem (hint: pamiętaj o RWD, ale ciii, nie mów nikomu, że Ci podpowiedziałem 😉)
+```sh
+git clone https://github.com/filiplizon/gnNews
+```
 
-## Następne kroki
+2. Navigate to the project directory:
 
-- wykonaj forka tego repozytorium jako prywatne repo
-- postępuj z instrukcjami zawartymi w [opis-zadania.md](./opis-zadania.md)
-- rozwiąż zadanie najlepiej jak potrafisz
-- dodaj użytkownika [gn-studio-pl](https://github.com/gn-studio-pl) do repozytorium
+```sh
+cd gnNews
+```
 
-## Uwagi
+3. Install the dependencies:
 
-- aplikację wykonaj w oparciu o React.js, wykorzystanie TypeScript'u bedzie mile widziane i dodatkowo punktowane
-- wykorzystaj nastepujace biblioteki: Redux toolkit, react-test-lib. Może odbierzesz to jako wychodzenie z armatą na muchy ale korzystamy z nich w naszych projektach i chcemy wiedziec czy czujesz się w nich dobrze
-- nie musisz tworzyć całego UI samemu, możesz skorzystać z dowolnej biblioteki UI
-- nie ma tutaj limitu czasu (poza wyznaczonym deadlinem), ale zalecamy, abyś nie spędzał nad tym zadaniem więcej jak 12 godzin
-- staraj się napisać swój kod najlepiej jak potrafisz
-- otestowanie przynajmniej części aplikacji mile widziane 😉
+```sh
+npm install
+```
 
-## Pytania?
+4. Create a .env.local file and enter your API key:
 
-Jeżeli masz jakiekolwiek pytania co do wykonywanego zadania, bądź coś nie jest dla Ciebie jasne, albo masz trudności na którymś etapie, nie krępuj się - dzwoń, pisz - wyjaśnimy (chyba 😛)
+```sh
+NEXT_PUBLIC_NEWS_API_KEY=[your api key] (https://newsapi.org/)
+```
 
-## Powodzenia!
+5. Start the application:
+
+```sh
+npm run dev
+```
+
+The application will be available at [http://localhost:3000](http://localhost:3000).
+
+## Features
+
+- Browse news from various countries
+- Change news structure
+- Integration with external API for fetching news data
