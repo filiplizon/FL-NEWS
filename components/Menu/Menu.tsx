@@ -56,15 +56,8 @@ const MenuContainer = () => {
         </Menu.Item>
       )}
       <Menu.Item
-        onClick={handleToggleModalVisibility}
-        key="3"
-        className={styles.menu_item}
-      >
-        <InfoCircleOutlined style={{ fontSize: "18px" }} />
-      </Menu.Item>
-      <Menu.Item
         onClick={handleToggleSidebarVisibility}
-        key="4"
+        key="3"
         className={styles.menu_item_mobile}
         style={{
           transform: isSidebarOpen ? "rotate(180deg)" : "rotate(0)",

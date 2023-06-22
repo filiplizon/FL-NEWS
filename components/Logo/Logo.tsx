@@ -4,7 +4,7 @@ import styles from "./Logo.module.css";
 const Logo = () => {
   return (
     <Link href="/" className={styles.logo}>
-      <span>gn</span>News
+      <span>FL</span>News
     </Link>
   );
 };

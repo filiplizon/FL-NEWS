@@ -50,7 +50,7 @@ const ModalContainer = () => {
       footer={null}
       className={currentArticle ? styles.modal : styles.modal_info}
     >
-      {currentArticle ? (
+      {currentArticle && (
         <>
           <Image
             className={styles.modal_image}
@@ -82,8 +82,6 @@ const ModalContainer = () => {
             {currentArticle.url}
           </Link>
         </>
-      ) : (
-        <ModalInfo />
       )}
     </Modal>
   );
